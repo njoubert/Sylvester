@@ -36,7 +36,7 @@ public:
 	Log(string className, LOGLEVEL level);
 	~Log();
 	void setLevel(LOGLEVEL level);
-	void log(LOGLEVEL level, char* msg, ...);
+	void log(LOGLEVEL level, const char* msg, ...);
 private:
 	string _className;
 	LOGLEVEL _level;

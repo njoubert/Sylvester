@@ -59,7 +59,7 @@ void Log::setLevel(LOGLEVEL level) {
 }
 
 //uses printf-style formatting
-void Log::log(LOGLEVEL level, char* msg, ...) {
+void Log::log(LOGLEVEL level, const char* msg, ...) {
 	if (level > _level)
 		return;
 	
