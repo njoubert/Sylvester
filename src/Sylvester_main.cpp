@@ -57,13 +57,12 @@ static void daemonize(void) {
 }
 
 void init(Config *config) {
-	if (config->makeDaemon)
-		daemonize();
-	
-	
 	Log& log = GETLOG("MAIN");
 	log.log(LOG_STATUS, "Welcome to Sylvester.\n");
-	
+
+	if (config->makeDaemon)
+		daemonize();
+		
 	Server &server = Server::Instance();
 	server.start();
 	
@@ -89,13 +88,22 @@ void init(Config *config) {
 
 }
 
+void usage() {
+	printf("usage: sylvester [--daemon]\n");
+	printf("  --daemon        Forks the service as a daemon.\n");
+}
+
 int main(int argc, char *argv[]) {
 	Sylvester::Config config;
 	
-	for (int i = 0; i < argc; i++) {
-		if (strcmp(argv[i],"-daemon") == 0) {
+	for (int i = 1; i < argc; i++) {
+		if (strcmp(argv[i],"--daemon") == 0) {
 			config.makeDaemon = true;
-		}		
+		} else {
+			fprintf(stderr,"Option not recognized, quitting %s\n", argv[i]);
+			usage();
+			exit(1);
+		}
 	}
 	
 	Sylvester::init(&config);
