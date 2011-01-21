@@ -91,3 +91,9 @@ Error case:
 ### Configuration
 
 Sylverster can be tuned to perform differently. 
+
+## Dependencies
+
+This project uses:
+
+-   [Mongoose](http://code.google.com/p/mongoose/)
