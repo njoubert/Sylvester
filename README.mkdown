@@ -5,21 +5,26 @@
 Expects a graph of tracks, and a set of tracks to add to the graph.
 Adds these tracks to the graph depending on a set of tunable factors.
 
-## Music Analysis Factors
+## Music Analysis
 
-Sylvester attempts to classify music according to a set of parameters.
-These include:
+Sylvester attempts to classify music according to a set of parameters, and add new tracks to a graph of tracks in a intelligent manner.
 
-**Similarity**
-**Tempo**
-**Mood**
-**Lyrical Content**
+The process is stateless - each request to Sylverster attempts to add tracks to the graph only according to its current settings and the graph handed to it. The same settings and and input will produce the same result.
+
+Possible parameters include:
+
+-   **Similarity**
+-   **Tempo**
+-   **Mood**
+-   **Lyrical Content**
 
 ## Interface
 
 Presents a HTML server to which JSON requests are made.
 
-Expects input data to be of form:
+### Graph Building
+
+Sylverster adds tracks to a graph. It expects input data to be of form:
 
     {
         "graph" : {
@@ -47,3 +52,6 @@ Expects input data to be of form:
         ]
     }
     
+### Configuration
+
+Sylverster can be tuned to perform differently. 
