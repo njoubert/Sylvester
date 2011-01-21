@@ -3,8 +3,7 @@
 namespace Sylvester {
 	
 Log::Log() {
-	std::cout << "Log initialized" << std::endl;
-	_level = 5;
+	_level = LOG_DEBUG;
 }
 
 Log::~Log() {
@@ -12,14 +11,22 @@ Log::~Log() {
 }
 
 void Log::setLevel(int level) {
-	if (level > 5)
-		level = 5;
-	if (level < 0)
-		level = 0;
+	if (level > LOG_DEBUG)
+		level = LOG_DEBUG;
+	if (level < LOG_OFF)
+		level = LOG_OFF;
 	_level = level;
 }
 
-void Log::log(int level, ...) {
+//uses printf-style formatting
+void Log::log(LOGLEVEL level, char* msg, ...) {
+	if (level > _level)
+		return;
 	
+	va_list argp;
+	va_start(argp, msg);
+	vfprintf(stderr, msg, argp);
+	va_end(argp);	
 }
+
 } /* namespace Sylvester */

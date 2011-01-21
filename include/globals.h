@@ -10,10 +10,6 @@
 #include <iostream>
 #include "log.h"
 
-namespace Sylvester {
-
-	
-}
 
 
 #endif /* SYLVERSER_GLOBALS_H_ */

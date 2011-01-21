@@ -1,6 +1,6 @@
 #include "server.h"
 
-extern "C" {
+//extern "C" {
 static void *event_handler(enum mg_event event,
                            struct mg_connection *conn,
                            const struct mg_request_info *request_info) {
@@ -16,7 +16,7 @@ static const char *options[] = {
   "num_threads", "5",
   NULL
 };
-}
+//}
 
 namespace Sylvester {
 
@@ -26,18 +26,18 @@ Server::Server() {
 
 Server::~Server() {
 	if (ctx != NULL) {
+		LOG.log(LOG_INFO, "Stopping mongoose server...\n");
 		mg_stop(ctx);
 	}
+	
 }
 
 void Server::start() {
-	std::cout << "SERVER STARTING" << std::endl;
-	struct mg_context *ctx = NULL;
 	ctx = mg_start(&event_handler, options);
 	if (ctx == NULL)
 		throw 42;
 
-	  printf("Chat server started on ports %s, press enter to quit.\n", mg_get_option(ctx, "listening_ports"));
+	LOG.log(LOG_INFO,"Chat server started on ports %s, press enter to quit.\n", mg_get_option(ctx, "listening_ports"));
 }	
 
 } /* namespace Sylvester */

@@ -8,7 +8,6 @@
 #define SYLVERSER_SERVER_H_
 
 #include <mongoose/mongoose.h>
-#include <cstdio>
 #include "globals.h"
 
 namespace Sylvester {
@@ -24,7 +23,6 @@ public:
 	void start();
 private:
 	struct mg_context *ctx;
-
 
 	//singleton
 	Server();

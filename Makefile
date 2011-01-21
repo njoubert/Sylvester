@@ -13,7 +13,7 @@ LINKER := g++
 CXXFILES    := $(wildcard $(SRCDIR)/*.cpp)
 CFLAGS      := -W -Wall -I -pthread -g
 HEADERS     := $(wildcard $(INCLUDEDIR)/*.h)
-INCLUDE := -I$(INCLUDEDIR) -Ilib/
+INCLUDE := -I$(INCLUDEDIR)/ -Ilib/
 CXXFLAGS := -g -Wall -O3 -fmessage-length=0 $(INCLUDE)
 LDFLAGS := 
 LIBS :=
