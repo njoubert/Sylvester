@@ -1,12 +1,17 @@
 #include "server.h"
 
+
+
+namespace Sylvester {
+
 //extern "C" {
 static void *event_handler(enum mg_event event,
                            struct mg_connection *conn,
                            const struct mg_request_info *request_info) {
 	//void *processed = const_cast<char *>("yes");
 	
-	printf("Request Received\n");
+	Server &server = Server::Instance();
+	server.handleRequest(event, conn, request_info);
 	
  	return (void*)1;
 }
@@ -18,8 +23,6 @@ static const char *options[] = {
   NULL
 };
 //}
-
-namespace Sylvester {
 
 Server::Server() : _log(GETLOG("SERVER")) {
 	ctx = NULL;
@@ -40,5 +43,13 @@ void Server::start() {
 
 	_log.log(LOG_INFO,"Chat server started on ports %s, press enter to quit.\n", mg_get_option(ctx, "listening_ports"));
 }	
+
+void Server::handleRequest(enum mg_event event,
+                          struct mg_connection *conn,
+                          const struct mg_request_info *request_info) {
+
+	_log.log(LOG_INFO,"Request arrived.\n");
+	
+}
 
 } /* namespace Sylvester */

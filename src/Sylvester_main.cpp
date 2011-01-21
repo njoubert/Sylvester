@@ -56,6 +56,13 @@ static void daemonize(void) {
     freopen( "/dev/null", "w", stderr);
 }
 
+int getWord(char* buffer) {
+	int count = 0;
+	int c;
+	while ((c = getchar()) != ' ' && c != '\n') { buffer[count] = c; count++; }
+	return count;
+}
+
 void init(Config *config) {
 	Log& log = GETLOG("MAIN");
 	log.log(LOG_STATUS, "Welcome to Sylvester.\n");
@@ -66,19 +73,27 @@ void init(Config *config) {
 	Server &server = Server::Instance();
 	server.start();
 	
-	int c, pc;
+	char buffer[1024];
+	int c;
 	while (1) {
 		printf("> ");
-		pc = c = getchar();
-		while (c != ' ' && c != '\n') { pc = c; c = getchar(); }
-		if (pc == 'q') {
+		c = getWord(buffer);
+		if (buffer[0] == 'q') {
 			break;			
-		} else  if (pc == 's') {
+		} else  if (buffer[0] == 's') {
 			printf("No status available.\n");
-		} else if (pc == 'h') {
+		} else  if (buffer[0] == 'l') {
+			c = getWord(buffer);
+			if (c == 1 && buffer[0] > 47 && buffer[0] < 56) {
+				Singleton<LogFactory>::Instance().setAllLogLevel((LOGLEVEL)(buffer[0]-48));
+			} else {
+				printf("Specify a logging level 0-7 (0 is off).\n");
+			}
+		} else if (buffer[0] == 'h') {
 			printf("Commands:\n");
 			printf("  \'q\' - quit\n");
 			printf("  \'s\' - status\n");
+			printf("  \'l [0-6]\' - change logging level\n");
 		} else {
 			printf("Press \'q'\' to quit, 'h' for help.\n");			
 		}			

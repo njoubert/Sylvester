@@ -18,6 +18,17 @@ Log& LogFactory::getLog(string className) {
 	return logs[className];
 }
 
+void LogFactory::setAllLogLevel(LOGLEVEL level) {
+	setDefaultLevel(level);
+	map<string, Log>::iterator it;
+
+	for ( it=logs.begin() ; it != logs.end(); it++ ) {
+		(*it).second.setLevel(level);
+		printf("Setting loglevel for log %s\n", (*it).first.c_str());
+	}
+
+}
+
 void LogFactory::setDefaultLevel(LOGLEVEL level) {
 	if (level > LOG_DEBUG)
 		level = LOG_DEBUG;

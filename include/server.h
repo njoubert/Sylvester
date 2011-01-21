@@ -21,6 +21,9 @@ public:
 	}
 	
 	void start();
+	void handleRequest(enum mg_event event,
+                           struct mg_connection *conn,
+                           const struct mg_request_info *request_info);
 private:
 	struct mg_context *ctx;
 	Log& _log;

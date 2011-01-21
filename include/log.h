@@ -48,7 +48,8 @@ public:
 	~LogFactory();
 	Log& getLog(string className);
 	void setDefaultLevel(LOGLEVEL level);
-	
+	void setAllLogLevel(LOGLEVEL level);
+
 private:
 	LOGLEVEL _level;
 	map<string, Log> logs;
