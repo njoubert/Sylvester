@@ -22,7 +22,12 @@ Possible parameters include:
 
 Presents a HTML server to which JSON requests are made.
 
+
 ### Graph Building
+
+POST graph, using JSON plaintext payload, to:
+
+    http://<server>:8083/graph
 
 Sylverster adds tracks to a graph. It expects input data to be of form:
 
@@ -52,6 +57,37 @@ Sylverster adds tracks to a graph. It expects input data to be of form:
         ]
     }
     
+It will return a datastructure of the same format, without the "new" object, or an "error" object:
+
+    {
+        "graph" : {
+            "nodes" : [
+                {
+                    "id" : 1,
+                    ...
+                },
+                ...
+            ]
+            "edges" : [
+                {
+                    "head": 1,
+                    "tail": 2
+                },
+                ...
+            ]            
+        }
+    }
+
+Error case:
+
+    {
+        "error" : {
+            "code" : 1
+            "reason" : "i fucked up"  
+        }
+    }
+
+
 ### Configuration
 
 Sylverster can be tuned to perform differently. 

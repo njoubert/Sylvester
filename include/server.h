@@ -33,7 +33,7 @@ private:
 	~Server();
 };
 	
-}
+} /* namespace Sylvester */
 
 
 #endif /* SYLVERSER_SERVER_H_ */

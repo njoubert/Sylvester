@@ -1,8 +1,6 @@
-
 #include "server.h"
 
-
-//extern "C" {
+extern "C" {
 static void *event_handler(enum mg_event event,
                            struct mg_connection *conn,
                            const struct mg_request_info *request_info) {
@@ -18,16 +16,18 @@ static const char *options[] = {
   "num_threads", "5",
   NULL
 };
-//}
+}
 
 namespace Sylvester {
 
 Server::Server() {
-	
+	ctx = NULL;
 }
 
 Server::~Server() {
-	
+	if (ctx != NULL) {
+		mg_stop(ctx);
+	}
 }
 
 void Server::start() {
@@ -40,4 +40,4 @@ void Server::start() {
 	  printf("Chat server started on ports %s, press enter to quit.\n", mg_get_option(ctx, "listening_ports"));
 }	
 
-}
+} /* namespace Sylvester */

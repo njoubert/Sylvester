@@ -8,6 +8,7 @@
 #define SYLVERSER_GLOBALS_H_
 
 #include <iostream>
+#include "log.h"
 
 namespace Sylvester {
 
