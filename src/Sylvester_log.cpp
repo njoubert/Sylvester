@@ -2,6 +2,26 @@
 
 namespace Sylvester {
 
+const char* levelToChar(LOGLEVEL level) {
+	switch(level) {
+		case LOG_OFF:
+		return "OFF ";
+		case LOG_ERROR:
+		return "ERR ";
+		case LOG_MESSAGE:
+		return "MSG ";
+		case LOG_WARN:
+		return "WARN";
+		case LOG_STATUS:
+		return "STAT";
+		case LOG_INFO:
+		return "INFO";
+		case LOG_DEBUG:
+		return "DBG ";
+	}
+	return "OOB";
+}
+
 LogFactory::LogFactory() {
 	_level = LOG_DEBUG;
 }
@@ -11,8 +31,8 @@ LogFactory::~LogFactory() {
 Log& LogFactory::getLog(string className) {
 	if (logs.count(className) > 0) 
 		return logs[className];
-	if(14 > className.size())
-        className.insert(className.size(), 12 - className.size(), ' ');
+	if(20 > className.size())
+        className.insert(className.size(), 20 - className.size(), ' ');
 	Log l(className, _level);
 	logs[className] = l;
 	return logs[className];
@@ -24,7 +44,7 @@ void LogFactory::setAllLogLevel(LOGLEVEL level) {
 
 	for ( it=logs.begin() ; it != logs.end(); it++ ) {
 		(*it).second.setLevel(level);
-		printf("Setting loglevel for log %s\n", (*it).first.c_str());
+		printf("Setting loglevel to %s for log %s\n", levelToChar(level), (*it).first.c_str());
 	}
 
 }
@@ -58,6 +78,10 @@ void Log::setLevel(LOGLEVEL level) {
 	_level = level;
 }
 
+LOGLEVEL Log::getLevel() {
+	return _level;
+}
+
 //uses printf-style formatting
 void Log::log(LOGLEVEL level, const char* msg, ...) {
 	if (level > _level)
@@ -65,7 +89,7 @@ void Log::log(LOGLEVEL level, const char* msg, ...) {
 	
 	va_list argp;
 	va_start(argp, msg);
-	printf("%s ", _className.c_str());
+	printf("%s: %s ", levelToChar(level), _className.c_str());
 	fflush(stdout);
 	vfprintf(stderr, msg, argp);
 	va_end(argp);	

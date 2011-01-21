@@ -30,12 +30,15 @@ enum LOGLEVEL {
 	LOG_DEBUG = 6
 };
 
+const char* levelToChar(LOGLEVEL level);
+
 class Log {
 public:
 	Log();
 	Log(string className, LOGLEVEL level);
 	~Log();
 	void setLevel(LOGLEVEL level);
+	LOGLEVEL getLevel();
 	void log(LOGLEVEL level, const char* msg, ...);
 private:
 	string _className;

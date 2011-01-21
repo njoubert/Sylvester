@@ -9,6 +9,7 @@
 
 #include <mongoose/mongoose.h>
 #include "globals.h"
+#include "requestHandler.h"
 
 namespace Sylvester {
 
@@ -21,12 +22,14 @@ public:
 	}
 	
 	void start();
-	void handleRequest(enum mg_event event,
+	int handleRequest(enum mg_event event,
                            struct mg_connection *conn,
                            const struct mg_request_info *request_info);
 private:
 	struct mg_context *ctx;
 	Log& _log;
+	RequestHandler _requestHandler;
+	
 	//singleton
 	Server();
 	Server(Server const&);
