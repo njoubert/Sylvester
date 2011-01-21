@@ -20,13 +20,13 @@ static const char *options[] = {
 
 namespace Sylvester {
 
-Server::Server() {
+Server::Server() : _log(GETLOG("SERVER")) {
 	ctx = NULL;
 }
 
 Server::~Server() {
 	if (ctx != NULL) {
-		LOG.log(LOG_INFO, "Stopping mongoose server...\n");
+		_log.log(LOG_INFO, "Stopping mongoose server...\n");
 		mg_stop(ctx);
 	}
 	
@@ -37,7 +37,7 @@ void Server::start() {
 	if (ctx == NULL)
 		throw 42;
 
-	LOG.log(LOG_INFO,"Chat server started on ports %s, press enter to quit.\n", mg_get_option(ctx, "listening_ports"));
+	_log.log(LOG_INFO,"Chat server started on ports %s, press enter to quit.\n", mg_get_option(ctx, "listening_ports"));
 }	
 
 } /* namespace Sylvester */

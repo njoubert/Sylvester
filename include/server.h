@@ -23,7 +23,7 @@ public:
 	void start();
 private:
 	struct mg_context *ctx;
-
+	Log& _log;
 	//singleton
 	Server();
 	Server(Server const&);

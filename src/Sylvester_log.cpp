@@ -1,16 +1,45 @@
 #include "log.h"
 
 namespace Sylvester {
+
+LogFactory::LogFactory() {
+	_level = LOG_DEBUG;
+}
+LogFactory::~LogFactory() {
 	
+}
+Log& LogFactory::getLog(string className) {
+	if (logs.count(className) > 0) 
+		return logs[className];
+	if(14 > className.size())
+        className.insert(className.size(), 12 - className.size(), ' ');
+	Log l(className, _level);
+	logs[className] = l;
+	return logs[className];
+}
+
+void LogFactory::setDefaultLevel(LOGLEVEL level) {
+	if (level > LOG_DEBUG)
+		level = LOG_DEBUG;
+	if (level < LOG_OFF)
+		level = LOG_OFF;
+	_level = level;
+}	
+
 Log::Log() {
 	_level = LOG_DEBUG;
+	_className = "";
+}
+Log::Log(string className, LOGLEVEL level) {
+	_level = level;
+	_className = className;
 }
 
 Log::~Log() {
 	
 }
 
-void Log::setLevel(int level) {
+void Log::setLevel(LOGLEVEL level) {
 	if (level > LOG_DEBUG)
 		level = LOG_DEBUG;
 	if (level < LOG_OFF)
@@ -25,6 +54,8 @@ void Log::log(LOGLEVEL level, char* msg, ...) {
 	
 	va_list argp;
 	va_start(argp, msg);
+	printf("%s ", _className.c_str());
+	fflush(stdout);
 	vfprintf(stderr, msg, argp);
 	va_end(argp);	
 }
