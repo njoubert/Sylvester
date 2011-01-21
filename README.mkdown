@@ -1,0 +1,49 @@
+# Sylvester
+
+**The Music Graph Builder**
+
+Expects a graph of tracks, and a set of tracks to add to the graph.
+Adds these tracks to the graph depending on a set of tunable factors.
+
+## Music Analysis Factors
+
+Sylvester attempts to classify music according to a set of parameters.
+These include:
+
+**Similarity**
+**Tempo**
+**Mood**
+**Lyrical Content**
+
+## Interface
+
+Presents a HTML server to which JSON requests are made.
+
+Expects input data to be of form:
+
+    {
+        "graph" : {
+            "nodes" : [
+                {
+                    "id" : 1,
+                    ...
+                },
+                ...
+            ]
+            "edges" : [
+                {
+                    "head": 1,
+                    "tail": 2
+                },
+                ...
+            ]            
+        },
+        "new" : [
+            {
+                "id" : 1,
+                ...
+            },
+            ...        
+        ]
+    }
+    
