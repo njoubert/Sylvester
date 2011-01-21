@@ -29,6 +29,7 @@ private:
 	struct mg_context *ctx;
 	Log& _log;
 	RequestHandler _requestHandler;
+	void printRequestInfo(const struct mg_request_info *request_info);
 	
 	//singleton
 	Server();

@@ -26,8 +26,8 @@ enum LOGLEVEL {
 	LOG_MESSAGE = 2, //message to the user, not inside loop
 	LOG_WARN = 3,
 	LOG_STATUS = 4,  //status of system, periodic but not often
-	LOG_INFO = 5,
-	LOG_DEBUG = 6
+	LOG_INFO = 5,    //might be inside loops
+	LOG_DEBUG = 6    //dumping like your grandma
 };
 
 const char* levelToChar(LOGLEVEL level);

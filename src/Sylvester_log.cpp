@@ -23,7 +23,7 @@ const char* levelToChar(LOGLEVEL level) {
 }
 
 LogFactory::LogFactory() {
-	_level = LOG_DEBUG;
+	_level = LOG_INFO;
 }
 LogFactory::~LogFactory() {
 	

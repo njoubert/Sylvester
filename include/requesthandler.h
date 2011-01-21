@@ -9,6 +9,7 @@
 
 #include <mongoose/mongoose.h>
 #include "globals.h"
+#include "response.h"
 
 namespace Sylvester {
 
@@ -20,6 +21,7 @@ public:
 private:
 	// handleGraphRequest();
 	// handleSettingsRequest();
+	void handleError(struct mg_connection *conn, ERROR_RESPONSE_CODE code, const char* msg);
 	Log& _log;
 };
 	
