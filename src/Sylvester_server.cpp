@@ -7,7 +7,8 @@ static void *event_handler(enum mg_event event,
 	//void *processed = const_cast<char *>("yes");
 	
 	printf("Request Received\n");
- 	return NULL;
+	
+ 	return (void*)1;
 }
 
 static const char *options[] = {
