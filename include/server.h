@@ -7,7 +7,7 @@
 #ifndef SYLVERSER_SERVER_H_
 #define SYLVERSER_SERVER_H_
 
-//#import <mongoose/mongoose.h>
+#import <mongoose/mongoose.h>
 
 #include "globals.h"
 

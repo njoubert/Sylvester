@@ -11,22 +11,28 @@ CXX := g++
 LINKER := g++
 
 CXXFILES    := $(wildcard $(SRCDIR)/*.cpp)
+CFLAGS      := -W -Wall -I -pthread -g
 HEADERS     := $(wildcard $(INCLUDEDIR)/*.h)
-INCLUDE := -I$(INCLUDEDIR)
+INCLUDE := -I$(INCLUDEDIR) -Ilib/
 CXXFLAGS := -g -Wall -O3 -fmessage-length=0 $(INCLUDE)
 LDFLAGS := 
-
+LIBS :=
 #Rules -----------------------------------------------------------------
+
+lib/mongoose.o: 
+	$(CC) $(CFLAGS) -c lib/mongoose/mongoose.c -o lib/mongoose.o
+
+LIBS += lib/mongoose.o
+#Mongoose --------------------------------------------------------------
 
 CXX_OBJS     := $(patsubst %.cpp, $(OBJDIR)/%.o, $(notdir $(CXXFILES)))
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.cpp $(HEADERS)
 	$(CXX) -c $< -o $@ $(CXXFLAGS)
 
-OBJECTS = $(patsubst %.cpp, $(OBJDIR)/%.o, $(notdir $(CXXFILES)))
 
-$(TARGET): $(CXX_OBJS) $(HEADERS)
-	$(LINKER) -o $(TARGET) $(CXX_OBJS) $(LDFLAGS)
+$(TARGET): $(CXX_OBJS) $(HEADERS) $(LIBS)
+	$(LINKER) -o $(TARGET) $(CXX_OBJS) $(LDFLAGS) $(LIBS)
 
 clean:
 	rm -f $(EXECUTABLE) $(OBJDIR)/*.o
