@@ -7,6 +7,8 @@
 #ifndef SYLVERSER_GLOBALS_H_
 #define SYLVERSER_GLOBALS_H_
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
 #include "log.h"
 

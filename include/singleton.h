@@ -1,7 +1,10 @@
-
-// singleton.h
-#ifndef _SINGLETON_H_
-#define _SINGLETON_H_
+//
+//  singleton.h
+//
+//  Created by Niels Joubert on 2011-01-21.
+//
+#ifndef SYLVERSER_SINGLETON_H_
+#define SYLVERSER_SINGLETON_H_
 
 #include <cstdio>
 
