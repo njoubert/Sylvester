@@ -27,9 +27,8 @@ LIBS += lib/mongoose.o
 
 CXX_OBJS     := $(CXXFILES:.cpp=.o)
 
-%.o : %.cpp $(HEADERS)
+%.o : %.cpp
 	$(CXX) -c $< -o $@ $(CXXFLAGS)
-
 
 $(TARGET): $(CXX_OBJS) $(HEADERS) $(LIBS)
 	$(LINKER) -o $(TARGET) $(CXX_OBJS) $(LDFLAGS) $(LIBS)
