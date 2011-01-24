@@ -82,7 +82,7 @@ Error case:
 
     {
         "error" : {
-            "code" : 1
+            "code" : 1,
             "reason" : "i fucked up"  
         }
     }
