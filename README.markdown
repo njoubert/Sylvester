@@ -48,6 +48,9 @@ Sylverster adds tracks to a graph. It expects input data to be of form:
                 ...
             ]            
         },
+        "current" : {
+            "id" : 1
+        }
         "new" : [
             {
                 "id" : 1,
