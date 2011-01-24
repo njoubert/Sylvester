@@ -8,24 +8,41 @@
 
 #include <mongoose/mongoose.h>
 #include "globals.h"
+#include "json/json.h"
 
 namespace Sylvester {
-enum ERROR_RESPONSE_CODE {
-	ERR_INCORRECT_METHOD
+	
+using namespace ::Json;
+
+enum RESPONSE_ERROR_CODE {
+	ERR_INCORRECT_METHOD,
+	ERR_UNKNOWN_PATH
 };
 
-class JSONResponse {
+class Response {
+	
+protected:
+	//Adds necessary headers (including content-length) and sends response to conn.
+	void sendHTTPResponse(struct mg_connection *conn, const char* str, size_t len);	
+};
+
+class JSONResponse : public Response {
 public:
+	//Abstract method for sending a response. Must be implemented in children
 	virtual void send(struct mg_connection *conn)=0;
+	
+protected:
+	//Converts JSON to actual char* request, calls sendHTTPResponse
+	void sendJSON(struct mg_connection *conn, const Value& value);
 };
 
 class JSONErrorResponse : public JSONResponse {
 public:
-	void setMessage(ERROR_RESPONSE_CODE code, const char* msg);
+	void setMessage(RESPONSE_ERROR_CODE code, const char* msg);
 	virtual void send(struct mg_connection *conn);
 private:
 	const char* _msg;
-	ERROR_RESPONSE_CODE _code;
+	RESPONSE_ERROR_CODE _code;
 };
 
 }
