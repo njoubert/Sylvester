@@ -21,7 +21,7 @@ public:
 private:
 	// handleGraphRequest();
 	// handleSettingsRequest();
-	void handleError(struct mg_connection *conn, RESPONSE_ERROR_CODE code, const char* msg);
+	void handleError(struct mg_connection *conn, RESPONSE_ERROR_CODE code, const char* payload);
 	Log& _log;
 };
 	

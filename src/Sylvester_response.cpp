@@ -6,6 +6,11 @@
 namespace Sylvester {
 
 using namespace ::Json;
+
+Response::Response()  : _log(GETLOG("RESPONSE")) {
+	
+}
+
 	
 void Response::sendHTTPResponse(struct mg_connection *conn, const char* str, size_t len) {
 	static const char *ajax_reply_start =
@@ -28,14 +33,21 @@ void JSONErrorResponse::send(struct mg_connection *conn) {
 	Value error;
 	error["code"] = _code;
 	error["reason"] = _msg;
+	if (_problem != NULL) {
+		error["problem"] = _problem;
+		_log.log(LOG_WARN, "Sending error Response. Code: %d, Msg: %s, Problem: %s\n", _code, _msg, _problem);
+	} else {
+			_log.log(LOG_WARN, "Sending error Response. Code: %d, Msg: %s, Payload: NULL\n", _code, _msg);
+	}
 	root["error"] = error;
 	sendJSON(conn, root);	
 }
 
 
-void JSONErrorResponse::setMessage(RESPONSE_ERROR_CODE code, const char* msg) {
+void JSONErrorResponse::setMessage(RESPONSE_ERROR_CODE code, const char* problem) {
 	_code = code;
-	_msg = msg;
+	_msg = RESPONSE_ERROR_MSG[code];
+	_problem = problem;
 }
 
 } /* namespace Sylvester */

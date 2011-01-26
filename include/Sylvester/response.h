@@ -15,15 +15,31 @@ namespace Sylvester {
 using namespace ::Json;
 
 enum RESPONSE_ERROR_CODE {
-	ERR_INCORRECT_METHOD,
-	ERR_UNKNOWN_PATH
+	ERR_MAJOR_SERVER_ERROR,
+	ERR_SERVER_ERROR,
+	ERR_INCORRECT_METHOD_POST,
+	ERR_UNKNOWN_PATH,
+	ERR_NO_CONTENT_TYPE,
+	ERR_WRONG_CONTENT_TYPE_JAVASCRIPT,
+	ERR_NO_CONTENT_LENGTH
+};
+static const char* RESPONSE_ERROR_MSG[] = {
+	"Major server error. You get to punch Niels. Not too hard though, please, he still needs to fix it...",
+	"Error! See payload",
+	"Expected but did not receive POST",
+	"Requested an unknown path",
+	"No Content-Type present",
+	"Wrong Content-Type present, expects application/x-javascript",
+	"No Content-Length present"
 };
 
 class Response {
-	
+public:
+	Response();
 protected:
 	//Adds necessary headers (including content-length) and sends response to conn.
 	void sendHTTPResponse(struct mg_connection *conn, const char* str, size_t len);	
+	Log& _log;
 };
 
 class JSONResponse : public Response {
@@ -38,10 +54,11 @@ protected:
 
 class JSONErrorResponse : public JSONResponse {
 public:
-	void setMessage(RESPONSE_ERROR_CODE code, const char* msg);
+	void setMessage(RESPONSE_ERROR_CODE code, const char* problem);
 	virtual void send(struct mg_connection *conn);
 private:
 	const char* _msg;
+	const char* _problem;
 	RESPONSE_ERROR_CODE _code;
 };
 
