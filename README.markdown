@@ -81,7 +81,9 @@ It will return a datastructure of the same format, without the "new" object, or 
         }
     }
 
-Error case:
+**Error case:**
+
+For the full list of possible error codes, see <code>RESPONSE_ERROR_CODE</code> inside <code>src/Sylvester_response.cpp</code>
 
     {
         "error" : {
@@ -89,6 +91,8 @@ Error case:
             "reason" : "i fucked up"  
         }
     }
+
+
 
 
 ### Configuration
