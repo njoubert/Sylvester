@@ -48,9 +48,7 @@ int Server::handleRequest(enum mg_event event,
 	int processed = 0;
 	switch (event) {
 			case MG_NEW_REQUEST:    // New HTTP request has arrived from the client
-				_requestHandler.handle(conn, request_info);
-				
-				processed = 1;
+				processed = (_requestHandler.handle(conn, request_info) == true) ? 1 : 0;
 				break;
 			case MG_HTTP_ERROR :    // HTTP error must be returned to the client
 				_log.log(LOG_WARN, "Mongoose HTTP error.\n");

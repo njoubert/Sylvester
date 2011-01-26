@@ -16,12 +16,13 @@ namespace Sylvester {
 class RequestHandler {
 public:
 	RequestHandler();
-	void handle(struct mg_connection *conn, const struct mg_request_info *request_info);
+	bool handle(struct mg_connection *conn, const struct mg_request_info *request_info);
 	
 private:
-	// handleGraphRequest();
-	// handleSettingsRequest();
+	bool getJSONFromRequest(struct mg_connection *conn, Json::Value& ret);
 	void handleError(struct mg_connection *conn, RESPONSE_ERROR_CODE code, const char* payload);
+	bool handleGraphRequest(struct mg_connection *conn, Json::Value& received);
+	bool verifyGraphRequestJSON(Json::Value& d);
 	Log& _log;
 };
 	

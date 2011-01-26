@@ -15,7 +15,6 @@
 
 #define GETLOG(className) Singleton<LogFactory>::Instance().getLog(className)
 
-
 namespace Sylvester {
 
 using namespace std;

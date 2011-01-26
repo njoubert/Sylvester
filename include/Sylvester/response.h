@@ -21,7 +21,9 @@ enum RESPONSE_ERROR_CODE {
 	ERR_UNKNOWN_PATH,
 	ERR_NO_CONTENT_TYPE,
 	ERR_WRONG_CONTENT_TYPE_JAVASCRIPT,
-	ERR_NO_CONTENT_LENGTH
+	ERR_NO_CONTENT,
+	ERR_JSON_PARSING,
+	ERR_MALFORMED_GRAPHREQUEST
 };
 static const char* RESPONSE_ERROR_MSG[] = {
 	"Major server error. You get to punch Niels. Not too hard though, please, he still needs to fix it...",
@@ -30,7 +32,9 @@ static const char* RESPONSE_ERROR_MSG[] = {
 	"Requested an unknown path",
 	"No Content-Type present",
 	"Wrong Content-Type present, expects application/x-javascript",
-	"No Content-Length present"
+	"No Content present",
+	"Could not parse JSON",
+	"/graph was given a malformed graph that did not conform to specification"
 };
 
 class Response {
