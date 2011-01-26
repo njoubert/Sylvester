@@ -7,7 +7,7 @@
 #define SYLVERSER_RESPONSE_H_
 
 #include <mongoose/mongoose.h>
-#include "globals.h"
+#include "Sylvester/globals.h"
 #include "json/json.h"
 
 namespace Sylvester {

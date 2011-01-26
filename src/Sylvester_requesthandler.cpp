@@ -1,4 +1,4 @@
-#include "requesthandler.h"
+#include "Sylvester/requesthandler.h"
 
 
 namespace Sylvester {
@@ -19,7 +19,7 @@ void RequestHandler::handle(struct mg_connection *conn, const struct mg_request_
 			} else {
 				_log.log(LOG_WARN, "Unsupported request method: %s\n", request_info->request_method);
 				handleError(conn, ERR_INCORRECT_METHOD, "Expected but did not receive POST");
-			}		
+			}
 		} else if (strcmp(request_info->uri, "/config") == 0) {
 		
 		

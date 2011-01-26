@@ -7,11 +7,11 @@
 #ifndef SYLVERSER_LOG_H_
 #define SYLVERSER_LOG_H_
 
-#include "singleton.h"
 #include <stdio.h>
 #include <stdarg.h>
 #include <map>
 #include <string>
+#include "Sylvester/singleton.h"
 
 #define GETLOG(className) Singleton<LogFactory>::Instance().getLog(className)
 

@@ -6,9 +6,9 @@
 
 
 
-#include "globals.h"
-#include "server.h"
-#include "config.h"
+#include "Sylvester/globals.h"
+#include "Sylvester/server.h"
+#include "Sylvester/config.h"
 
 #include <unistd.h>
 #include <sys/types.h>

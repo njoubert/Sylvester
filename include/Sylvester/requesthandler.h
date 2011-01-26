@@ -8,8 +8,8 @@
 #define SYLVERSER_REQUEST_HANDLER_H_
 
 #include <mongoose/mongoose.h>
-#include "globals.h"
-#include "response.h"
+#include "Sylvester/globals.h"
+#include "Sylvester/response.h"
 
 namespace Sylvester {
 

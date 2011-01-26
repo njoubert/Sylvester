@@ -1,4 +1,4 @@
-#include "response.h"
+#include "Sylvester/response.h"
 #include <sstream>
 
 
@@ -18,17 +18,17 @@ void Response::sendHTTPResponse(struct mg_connection *conn, const char* str, siz
 }
 
 void JSONResponse::sendJSON(struct mg_connection *conn, const Value& value) {
-	StyledWriter writer;
+	StyledWriter writer; 	//todo(njoubert): Replace with FastWriter for production
 	string out = writer.write(value);
 	sendHTTPResponse(conn, out.c_str(), out.length());
 }
 
 void JSONErrorResponse::send(struct mg_connection *conn) {
-	Value error_value;
-	error_value["code"] = _code;
-	error_value["reason"] = _msg;
 	Value root;
-	root["error"] = error_value;
+	Value error;
+	error["code"] = _code;
+	error["reason"] = _msg;
+	root["error"] = error;
 	sendJSON(conn, root);	
 }
 
