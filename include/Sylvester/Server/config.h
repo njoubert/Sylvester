@@ -8,7 +8,8 @@
 
 
 namespace Sylvester {
-
+namespace Server {
+		
 struct Config {
 	bool makeDaemon;
 	Config() {
@@ -16,6 +17,7 @@ struct Config {
 	}
 };
 
-}
+} /* namespace Server */
+} /* namespace Sylvester */
 
 #endif /* SYLVERSER_CONFIG_H_ */

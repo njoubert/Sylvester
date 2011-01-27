@@ -1,7 +1,8 @@
-#include "Sylvester/server.h"
+#include "Sylvester/Server/server.h"
 
 
 namespace Sylvester {
+namespace Server {
 
 static void *event_handler(enum mg_event event,
                            struct mg_connection *conn,
@@ -80,5 +81,5 @@ void Server::printRequestInfo(const struct mg_request_info *request_info) {
 	}
 }
 
-
+} /* namespace Server */
 } /* namespace Sylvester */

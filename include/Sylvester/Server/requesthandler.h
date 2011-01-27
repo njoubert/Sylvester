@@ -8,10 +8,11 @@
 #define SYLVERSER_REQUEST_HANDLER_H_
 
 #include <mongoose/mongoose.h>
-#include "Sylvester/globals.h"
-#include "Sylvester/response.h"
+#include "Sylvester/Server/globals.h"
+#include "Sylvester/Server/response.h"
 
 namespace Sylvester {
+namespace Server {
 
 class RequestHandler {
 public:
@@ -25,7 +26,8 @@ private:
 	bool verifyGraphRequestJSON(Json::Value& d);
 	Log& _log;
 };
-	
+
+} /* namespace Server */
 } /* namespace Sylvester */
 
 

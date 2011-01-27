@@ -1,8 +1,9 @@
-#include "Sylvester/requesthandler.h"
+#include "Sylvester/Server/requesthandler.h"
 
 
 namespace Sylvester {
-
+namespace Server {
+	
 RequestHandler::RequestHandler()  : _log(GETLOG("REQUEST_HANDLER")) {
 	
 }
@@ -116,5 +117,5 @@ void RequestHandler::handleError(struct mg_connection *conn, RESPONSE_ERROR_CODE
 	res.send(conn);
 }
 	
-
+} /* namespace Server */
 } /* namespace Sylvester */

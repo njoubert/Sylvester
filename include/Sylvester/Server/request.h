@@ -8,6 +8,7 @@
 
 
 namespace Sylvester {
+namespace Server {
 
 class Request {
 public:
@@ -17,6 +18,7 @@ private:
 
 };
 
-}
+} /* namespace Server */
+} /* namespace Sylvester */
 
 #endif /* SYLVERSER_REQUEST_H_ */

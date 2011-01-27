@@ -1,9 +1,10 @@
-#include "Sylvester/response.h"
+#include "Sylvester/Server/response.h"
 #include <sstream>
 
 
 
 namespace Sylvester {
+namespace Server {
 
 using namespace ::Json;
 
@@ -50,4 +51,5 @@ void JSONErrorResponse::setMessage(RESPONSE_ERROR_CODE code, const char* problem
 	_problem = problem;
 }
 
+} /* namespace Server */
 } /* namespace Sylvester */

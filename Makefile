@@ -1,42 +1,43 @@
-#My Code   -------------------------------
 
-TARGET      := Sylvester
 SRCDIR      := src
 INCLUDEDIR  := include
-
-#Basic Config -----------------------------------------------------------------
 
 CXX := g++
 LINKER := g++
 
-CXXFILES    := $(wildcard $(SRCDIR)/*.cpp) $(wildcard $(SRCDIR)/json/*.cpp)
-HEADERS     := $(wildcard $(INCLUDEDIR)/*.h) $(wildcard $(INCLUDEDIR)/json/*.h)
-CFLAGS      := -W -Wall -I -pthread -g
+# All CXX files grouped by sub-namespace
+JSON_CXXFILES      := $(wildcard $(SRCDIR)/json/*.cpp)
+SERVER_CXXFILES    := $(wildcard $(SRCDIR)/Sylvester/Server/*.cpp)
+CXXFILES           := $(JSON_CXXFILES) $(SERVER_CXXFILES)
 
+# All Header files grouped by sub-namespace
+JSON_HEADERS       := $(wildcard $(INCLUDEDIR)/json/*.h)
+SERVER_HEADERS     := $(wildcard $(INCLUDEDIR)/Sylvester/Server/*.h)
+HEADERS            := $(JSON_HEADERS) $(SERVER_HEADERS)
+
+CFLAGS      := -W -Wall -I -pthread -g
 INCLUDE := -I$(INCLUDEDIR)/ -Ilib/
 CXXFLAGS := -g -Wall -O3 -fmessage-length=0 $(INCLUDE)
 LDFLAGS := 
-LIBS :=
+LIBS := lib/mongoose.o
+
 #Rules -----------------------------------------------------------------
 
-lib/mongoose.o: 
-	$(CC) $(CFLAGS) -c lib/mongoose/mongoose.c -o lib/mongoose.o
-
-LIBS += lib/mongoose.o
-#Mongoose --------------------------------------------------------------
-
-CXX_OBJS     := $(CXXFILES:.cpp=.o)
+JSON_CXXOBJS     := $(JSON_CXXFILES:.cpp=.o)
+SERVER_CXXOBJS     := $(SERVER_CXXFILES:.cpp=.o)
 
 %.o : %.cpp
 	$(CXX) -c $< -o $@ $(CXXFLAGS)
 
-$(TARGET): $(CXX_OBJS) $(HEADERS) $(LIBS)
-	$(LINKER) -o $(TARGET) $(CXX_OBJS) $(LDFLAGS) $(LIBS)
+server: $(SERVER_CXXOBJS) $(JSON_CXXOBJS) $(SERVER_HEADERS) $(JSON_HEADERS) $(LIBS)
+	$(LINKER) -o server $(SERVER_CXXOBJS) $(JSON_CXXOBJS) $(LDFLAGS) $(LIBS)
 
 clean:
-	rm -f $(EXECUTABLE) $(CXX_OBJS)
+	rm -f server $(JSON_CXXOBJS) $(SERVER_CXXOBJS)
 
-run: $(EXECUTABLE)
-	./$(EXECUTABLE)
+.DEFAULT_GOAL := server
 
-.DEFAULT_GOAL := $(TARGET)
+#Libraries -----------------------------------------------------------------
+
+lib/mongoose.o: 
+	$(CC) $(CFLAGS) -c lib/mongoose/mongoose.c -o lib/mongoose.o

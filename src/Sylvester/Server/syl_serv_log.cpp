@@ -1,6 +1,7 @@
-#include "Sylvester/log.h"
+#include "Sylvester/Server/log.h"
 
 namespace Sylvester {
+namespace Server {
 
 const char* levelToChar(LOGLEVEL level) {
 	switch(level) {
@@ -95,4 +96,5 @@ void Log::log(LOGLEVEL level, const char* msg, ...) {
 	va_end(argp);	
 }
 
+} /* namespace Server */
 } /* namespace Sylvester */

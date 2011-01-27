@@ -7,10 +7,12 @@
 #define SYLVERSER_RESPONSE_H_
 
 #include <mongoose/mongoose.h>
-#include "Sylvester/globals.h"
 #include "json/json.h"
 
+#include "Sylvester/Server/globals.h"
+
 namespace Sylvester {
+namespace Server {
 	
 using namespace ::Json;
 
@@ -66,6 +68,7 @@ private:
 	RESPONSE_ERROR_CODE _code;
 };
 
-}
+} /* namespace Server */
+} /* namespace Sylvester */
 
 #endif /* SYLVERSER_RESPONSE_H_ */

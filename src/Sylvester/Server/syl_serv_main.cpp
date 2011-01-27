@@ -6,16 +6,17 @@
 
 
 
-#include "Sylvester/globals.h"
-#include "Sylvester/server.h"
-#include "Sylvester/config.h"
+#include "Sylvester/Server/globals.h"
+#include "Sylvester/Server/server.h"
+#include "Sylvester/Server/config.h"
 
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 
 namespace Sylvester {
-
+namespace Server {
+	
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
 
@@ -72,7 +73,7 @@ void init(Config *config) {
 	if (config->makeDaemon)
 		daemonize();
 		
-	Server &server = Server::Instance();
+	Server &server = Sylvester::Server::Server::Instance();
 	server.start();
 	
 	char buffer[1024];
@@ -103,7 +104,8 @@ void init(Config *config) {
 	
 }
 
-}
+} /* namespace Server */
+} /* namespace Sylvester */
 
 void usage() {
 	printf("usage: sylvester [--daemon]\n");
@@ -111,7 +113,7 @@ void usage() {
 }
 
 int main(int argc, char *argv[]) {
-	Sylvester::Config config;
+	Sylvester::Server::Config config;
 	
 	for (int i = 1; i < argc; i++) {
 		if (strcmp(argv[i],"--daemon") == 0) {
@@ -123,6 +125,6 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	
-	Sylvester::init(&config);
+	Sylvester::Server::init(&config);
 	return 0;
 }

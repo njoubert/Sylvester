@@ -16,6 +16,7 @@
 #define GETLOG(className) Singleton<LogFactory>::Instance().getLog(className)
 
 namespace Sylvester {
+namespace Server {
 
 using namespace std;
 
@@ -57,7 +58,8 @@ private:
 	map<string, Log> logs;
 };
 
-}
+} /* namespace Server */
+} /* namespace Sylvester */
 
 
 #endif /* SYLVERSER_LOG_H_ */

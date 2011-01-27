@@ -8,10 +8,12 @@
 #define SYLVERSER_SERVER_H_
 
 #include <mongoose/mongoose.h>
-#include "Sylvester/globals.h"
-#include "Sylvester/requestHandler.h"
+
+#include "Sylvester/Server/globals.h"
+#include "Sylvester/Server/requesthandler.h"
 
 namespace Sylvester {
+namespace Server {
 
 class Server {
 public:
@@ -37,7 +39,8 @@ private:
 	Server& operator=(Server const&);
 	~Server();
 };
-	
+
+} /* namespace Server */
 } /* namespace Sylvester */
 
 
