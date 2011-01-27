@@ -1,6 +1,6 @@
 #include "Sylvester/Server/response.h"
 #include <sstream>
-
+#include <string>
 
 
 namespace Sylvester {

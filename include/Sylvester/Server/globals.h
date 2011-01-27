@@ -2,10 +2,11 @@
 //  globals.h
 //
 //  Created by Niels Joubert on 2011-01-21.
+//  Copyright (c) 2011 Niels Joubert. All rights reserved.
 //
 
-#ifndef SYLVERSER_GLOBALS_H_
-#define SYLVERSER_GLOBALS_H_
+#ifndef INCLUDE_SYLVESTER_SERVER_GLOBALS_H_
+#define INCLUDE_SYLVESTER_SERVER_GLOBALS_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,4 +15,4 @@
 
 
 
-#endif /* SYLVERSER_GLOBALS_H_ */
+#endif  // INCLUDE_SYLVESTER_SERVER_GLOBALS_H_

@@ -2,6 +2,7 @@
 //  singleton.h
 //
 //  Created by Niels Joubert on 2011-01-21.
+//  Copyright (c) 2011 Niels Joubert. All rights reserved.
 //
 #ifndef SYLVERSER_SINGLETON_H_
 #define SYLVERSER_SINGLETON_H_

@@ -2,9 +2,10 @@
 //  request.h
 //
 //  Created by Niels Joubert on 2011-01-21.
+//  Copyright (c) 2011 Niels Joubert. All rights reserved.
 //
-#ifndef SYLVERSER_RESPONSE_H_
-#define SYLVERSER_RESPONSE_H_
+#ifndef INCLUDE_SYLVESTER_SERVER_RESPONSE_H_
+#define INCLUDE_SYLVESTER_SERVER_RESPONSE_H_
 
 #include <mongoose/mongoose.h>
 #include "json/json.h"
@@ -14,7 +15,9 @@
 namespace Sylvester {
 namespace Server {
 	
-using namespace ::Json;
+using ::Json::Value;
+using ::Json::Reader;
+using ::Json::Writer;
 
 enum RESPONSE_ERROR_CODE {
 	ERR_MAJOR_SERVER_ERROR,
@@ -71,4 +74,4 @@ private:
 } /* namespace Server */
 } /* namespace Sylvester */
 
-#endif /* SYLVERSER_RESPONSE_H_ */
+#endif  // INCLUDE_SYLVESTER_SERVER_RESPONSE_H_

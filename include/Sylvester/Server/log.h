@@ -1,11 +1,13 @@
 //
+//
 //  server.h
 //
 //  Created by Niels Joubert on 2011-01-21.
+//  Copyright (c) 2011 Niels Joubert. All rights reserved.
 //
 
-#ifndef SYLVERSER_LOG_H_
-#define SYLVERSER_LOG_H_
+#ifndef INCLUDE_SYLVESTER_SERVER_LOG_H_
+#define INCLUDE_SYLVESTER_SERVER_LOG_H_
 
 #include <stdio.h>
 #include <stdarg.h>
@@ -62,4 +64,4 @@ private:
 } /* namespace Sylvester */
 
 
-#endif /* SYLVERSER_LOG_H_ */
+#endif  // INCLUDE_SYLVESTER_SERVER_LOG_H_

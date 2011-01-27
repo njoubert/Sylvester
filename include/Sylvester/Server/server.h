@@ -2,10 +2,11 @@
 //  server.h
 //
 //  Created by Niels Joubert on 2011-01-21.
+//  Copyright (c) 2011 Niels Joubert. All rights reserved.
 //
 
-#ifndef SYLVERSER_SERVER_H_
-#define SYLVERSER_SERVER_H_
+#ifndef INCLUDE_SYLVESTER_SERVER_SERVER_H_
+#define INCLUDE_SYLVESTER_SERVER_SERVER_H_
 
 #include <mongoose/mongoose.h>
 
@@ -35,7 +36,7 @@ private:
 	
 	//singleton
 	Server();
-	Server(Server const&);
+	explicit Server(Server const&);
 	Server& operator=(Server const&);
 	~Server();
 };
@@ -44,4 +45,4 @@ private:
 } /* namespace Sylvester */
 
 
-#endif /* SYLVERSER_SERVER_H_ */
+#endif  // INCLUDE_SYLVESTER_SERVER_SERVER_H_

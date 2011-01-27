@@ -2,9 +2,10 @@
 //  request.h
 //
 //  Created by Niels Joubert on 2011-01-21.
+//  Copyright (c) 2011 Niels Joubert. All rights reserved.
 //
-#ifndef SYLVERSER_REQUEST_H_
-#define SYLVERSER_REQUEST_H_
+#ifndef INCLUDE_SYLVESTER_SERVER_REQUEST_H_
+#define INCLUDE_SYLVESTER_SERVER_REQUEST_H_
 
 
 namespace Sylvester {
@@ -21,4 +22,4 @@ private:
 } /* namespace Server */
 } /* namespace Sylvester */
 
-#endif /* SYLVERSER_REQUEST_H_ */
+#endif  // INCLUDE_SYLVESTER_SERVER_REQUEST_H_

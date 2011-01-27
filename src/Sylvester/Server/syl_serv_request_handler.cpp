@@ -77,8 +77,6 @@ bool RequestHandler::handleGraphRequest(struct mg_connection *conn, Json::Value&
 	}
 	
 	
-	
-	
 	return true;
 }
 //just confirms that graph->nodes[]/edges[], current->id, new[] exists.
