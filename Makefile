@@ -32,6 +32,10 @@ SERVER_CXXOBJS     := $(SERVER_CXXFILES:.cpp=.o)
 server: $(SERVER_CXXOBJS) $(JSON_CXXOBJS) $(SERVER_HEADERS) $(JSON_HEADERS) $(LIBS)
 	$(LINKER) -o server $(SERVER_CXXOBJS) $(JSON_CXXOBJS) $(LDFLAGS) $(LIBS)
 
+lint:
+	$(foreach myfile,$(SERVER_HEADERS),python cpplint.py --filter=-whitespace $(myfile);)
+	$(foreach myfile,$(SERVER_CXXFILES),python cpplint.py --filter=-whitespace $(myfile);)
+
 clean:
 	rm -f server $(JSON_CXXOBJS) $(SERVER_CXXOBJS)
 
