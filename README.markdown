@@ -39,14 +39,12 @@ Sylverster adds tracks to a graph. It expects input data to be of form:
                     ...
                 },
                 ...
-            ]
+            ],
             "edges" : [
-                {
-                    "head": 1,
-                    "tail": 2
-                },
+                [1,2],
+                [2,3],
                 ...
-            ]            
+            ]  
         },
         "current" : {
             "id" : 1
@@ -70,7 +68,7 @@ It will return a datastructure of the same format, without the "new" object, or 
                     ...
                 },
                 ...
-            ]
+            ],
             "edges" : [
                 [1,2],
                 [2,3],
