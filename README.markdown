@@ -72,10 +72,8 @@ It will return a datastructure of the same format, without the "new" object, or 
                 ...
             ]
             "edges" : [
-                {
-                    "head": 1,
-                    "tail": 2
-                },
+                [1,2],
+                [2,3],
                 ...
             ]            
         }
